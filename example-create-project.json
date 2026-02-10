@@ -1,0 +1,126 @@
+{
+  "projectId": "qahwaji-riyadh-11",
+  "name": "قهوجي الرياض",
+  "description": "خدمة قهوجي الرياض لتقديم القهوة العربية الأصيلة والضيافة السعودية الفاخرة لجميع المناسبات الخاصة والرسمية داخل الرياض",
+  "isActive": true,
+  "siteSettings": {
+    "siteTitle": "قهوجي الرياض | قهوجي سعودي محترف للمناسبات",
+    "siteDescription": "قهوجي الرياض يقدم القهوة العربية الأصيلة والضيافة السعودية الراقية للمناسبات، الأعراس، العزائم والفعاليات داخل الرياض",
+    "siteKeywords": [
+      "قهوجي الرياض",
+      "قهوجى الرياض",
+      "قهوجي سعودي",
+      "صبابين قهوة الرياض",
+      "قهوجي مناسبات",
+      "قهوجي حفلات",
+      "قهوجي قهوة عربية"
+    ],
+    "phone": "+9660506142019",
+    "whatsapp": "+9660506142019",
+    "email": "info@qahwajialriyad.com",
+    "address": "الرياض – المملكة العربية السعودية",
+    "brandName": "قهوجي الرياض"
+  },
+  "heroSection": {
+    "headline": "قهوجي الرياض",
+    "headlineHighlight": "ضيافة سعودية أصيلة",
+    "subheadline": "نقدّم خدمة قهوجي سعودي محترف لتقديم القهوة العربية الفاخرة في جميع مناسباتكم داخل الرياض",
+    "primaryCtaText": "احجز قهوجي الآن",
+    "primaryCtaLink": "#contact",
+    "secondaryCtaText": "تواصل واتساب",
+    "secondaryCtaLink": "https://wa.me/9660506142019",
+    "backgroundImage": "/images/hero-qahwaji-riyadh.jpg",
+    "isActive": true
+  },
+  "aboutSection": {
+    "label": "من نحن",
+    "title": "قهوجي سعودي محترف في الرياض",
+    "description1": "نحن متخصصون في تقديم خدمات قهوجي الرياض بخبرة عالية في مجال الضيافة السعودية. نحرص على تقديم القهوة العربية الأصيلة باستخدام أجود أنواع البن والبهارات مع التزام كامل بالأناقة والدقة في المواعيد.",
+    "image": "/images/about-qahwaji.jpg"
+  },
+  "servicesSection": {
+    "label": "خدماتنا",
+    "title": "خدمات قهوجي الرياض",
+    "description": "نوفر خدمات قهوجي وسقاة قهوة لجميع أنواع المناسبات داخل الرياض بجودة عالية ولمسة تراثية فاخرة",
+    "services": [
+      {
+        "icon": "Users",
+        "title": "قهوجي للمناسبات الخاصة",
+        "description": "قهوجي محترف للأعراس، الملكات، حفلات التخرج والمناسبات العائلية"
+      },
+      {
+        "icon": "Coffee",
+        "title": "تقديم القهوة العربية",
+        "description": "تحضير وتقديم القهوة العربية الأصيلة بأفضل أنواع البن والهيل"
+      },
+      {
+        "icon": "Building2",
+        "title": "قهوجي للشركات",
+        "description": "خدمة قهوجي للفعاليات الرسمية، المؤتمرات واجتماعات الشركات"
+      },
+      {
+        "icon": "Heart",
+        "title": "ضيافة سعودية راقية",
+        "description": "ضيافة تعكس الكرم السعودي بأدوات تراثية ومظهر أنيق"
+      }
+    ]
+  },
+  "whyUsSection": {
+    "label": "لماذا نحن",
+    "title": "لماذا تختار قهوجي الرياض؟",
+    "description": "نقدّم تجربة ضيافة متكاملة تجمع بين الأصالة، الجودة والاحتراف",
+    "features": [
+      {
+        "icon": "Award",
+        "title": "خبرة واحتراف",
+        "description": "فريق قهوجيين مدرّب على أعلى مستوى"
+      },
+      {
+        "icon": "Clock",
+        "title": "الالتزام بالمواعيد",
+        "description": "نصل في الوقت المحدد ونلتزم بخدمة دقيقة"
+      },
+      {
+        "icon": "Sparkles",
+        "title": "مظهر فاخر",
+        "description": "زي تراثي أنيق وأدوات تقديم فاخرة"
+      },
+      {
+        "icon": "Shield",
+        "title": "ثقة وجودة",
+        "description": "نستخدم مكونات عالية الجودة لضمان أفضل طعم"
+      }
+    ]
+  },
+  "contactSection": {
+    "label": "تواصل معنا",
+    "title": "احجز قهوجي الرياض الآن",
+    "description": "تواصل معنا الآن لحجز قهوجي سعودي محترف يضيف لمسة فخامة لمناسبتك داخل الرياض"
+  },
+  "galleryImages": [
+    {
+      "url": "https://res.cloudinary.com/dg8bbwiu5/image/upload/v1769771213/projects/cml0pt2jr0000rgu50g370mil/gallery/lv764topw6nmtbjqtssj.jpg",
+      "alt": "قهوجي الرياض يقدم القهوة العربية باحتراف في المناسبات الخاصة"
+    },
+    {
+      "url": "https://res.cloudinary.com/dg8bbwiu5/image/upload/v1769771207/projects/cml0pt2jr0000rgu50g370mil/gallery/gnidbnplcjhlta1syeah.jpg",
+      "alt": "قهوجي سعودي متخصص في الضيافة العربية الأصيلة بالرياض"
+    },
+    {
+      "url": "https://res.cloudinary.com/dg8bbwiu5/image/upload/v1769771199/projects/cml0pt2jr0000rgu50g370mil/gallery/fwgkj1zht6soc8fzdeqx.jpg",
+      "alt": "قهوجي الرياض يستخدم أدوات القهوة العربية التراثية"
+    },
+    {
+      "url": "https://res.cloudinary.com/dg8bbwiu5/image/upload/v1769771175/projects/cml0pt2jr0000rgu50g370mil/gallery/in3qdlnvybh3xaekpzjy.jpg",
+      "alt": "قهوجي مناسبات يقدم القهوة العربية الأصيلة"
+    },
+    {
+      "url": "https://res.cloudinary.com/dg8bbwiu5/image/upload/v1769771166/projects/cml0pt2jr0000rgu50g370mil/gallery/pmfdjkwnzsp6q0xhha62.jpg",
+      "alt": "قهوجي الرياض لفعاليات الشركات والمؤتمرات"
+    },
+    {
+      "url": "https://res.cloudinary.com/dg8bbwiu5/image/upload/v1769771144/projects/cml0pt2jr0000rgu50g370mil/gallery/fikakg7deae8cngjeosh.jpg",
+      "alt": "قهوجي حفلات زفاف يقدم ضيافة قهوة عربية فاخرة"
+    }
+  ]
+}
