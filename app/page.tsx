@@ -11,9 +11,10 @@ import PremiumPackagesSection from "@/components/PremiumPackagesSection";
 import { APP_URL, CurrentProjectId } from "@/lib/ProjectId";
 import { ProjectContentResponse } from "@/lib/responseType";
 import FloatedIcons from "@/components/FloatedIcons";
+import RatingSection from "@/components/RatingSection";
 
 export default async function HomePage() {
-  let data;
+  let data: ProjectContentResponse;
 
   try {
     const res = await fetch(
@@ -30,6 +31,8 @@ export default async function HomePage() {
       services: { label: "", title: "", description: "", items: [] },
       whyUs: { label: "", title: "", description: "", features: [] },
       gallery: [],
+      packages: [],
+      rating: { averageRating: 0, totalRatings: 0 },
       footer: {
         brandName: "قهوجيين الرياض",
         phone: "",
@@ -45,7 +48,15 @@ export default async function HomePage() {
       <HeroSection {...data.hero} image={data.about.image ?? ""} />
       <AboutSection {...data.about} features={data.whyUs.features} />
       <ServicesSection {...data.services} />
-      <PremiumPackagesSection whatsapp={data.hero?.whatsApp ?? ""} />
+      <PremiumPackagesSection
+        packages={data.packages ?? []}
+        whatsapp={data.hero?.whatsApp ?? ""}
+      />
+      <RatingSection
+        projectId={CurrentProjectId}
+        averageRating={data.rating?.averageRating ?? 0}
+        totalRatings={data.rating?.totalRatings ?? 0}
+      />
       <FAQSection />
       <GallerySection gallery={data.gallery} />
       <FloatedIcons whatsapp={data.hero?.whatsApp ?? ""} />

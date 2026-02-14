@@ -1,157 +1,125 @@
-import { Check, Coffee, Crown, Zap } from "lucide-react";
-
-interface Package {
-  id: string;
-  name: string;
-  description: string;
-  features: string[];
-  popular?: boolean;
-  icon?: React.ReactNode;
-  bgColor?: string;
-}
-const packages: Package[] = [
-  {
-    id: "platinum",
-    name: "الباقة البلاتينية",
-    description: "اتصل للاستعلام",
-    popular: false,
-    icon: <Coffee className="w-6 h-6" />,
-    bgColor: "bg-gradient-to-br from-slate-900 to-slate-800",
-    features: [
-      "ديكور ملكي من متر من حتى 8 متر على حسب المساحة المتوفرة لدى العميل",
-      "1 فوتوجي و 4 صباب",
-      "10 أنواع شاي",
-      "قهوة عربي وأمريكي",
-      "معدل حرامي 25 متر",
-    ],
-  },
-  {
-    id: "gold",
-    name: "الباقة الذهبية",
-    description: "اتصل للاستعلام",
-    popular: true,
-    icon: <Crown className="w-6 h-6" />,
-    bgColor: "bg-gradient-to-br from-amber-500 via-orange-500 to-red-500",
-    features: [
-      "ديكور ملكي من متر من حتى 8 متر على حسب المساحة المتوفرة لدى العميل",
-      "1 فوتوجي و 9 صباب",
-      "10 أنواع شاي",
-      "قهوة عربي وأمريكي",
-      "معدل حرامي 25 متر",
-    ],
-  },
-  {
-    id: "silver",
-    name: "الباقة الفضية",
-    description: "اتصل للاستعلام",
-    popular: false,
-    icon: <Zap className="w-6 h-6" />,
-    bgColor: "bg-gradient-to-br from-slate-800 to-slate-700",
-    features: [
-      "ديكور ملكي من متر من حتى 8 متر على حسب المساحة المتوفرة لدى العميل",
-      "1 فوتوجي و 6 صباب",
-      "10 أنواع شاي",
-      "قهوة عربي وأمريكي",
-      "معدل حرامي 25 متر",
-    ],
-  },
-  {
-    id: "royal",
-    name: "الباقة الملكية",
-    description: "اتصل للاستعلام",
-    popular: false,
-    icon: <Crown className="w-6 h-6" />,
-    bgColor: "bg-gradient-to-br from-yellow-600 to-yellow-500",
-    features: [
-      "ديكور ملكي من متر من حتى 8 متر على حسب المساحة المتوفرة لدى العميل",
-      "1 فوتوجي و 15 صباب",
-      "10 أنواع شاي",
-      "قهوة عربي وأمريكي",
-      "معدل حرامي 25 متر",
-    ],
-  },
-];
+"use client";
+import { motion } from "motion/react";
+import { PackageData } from "@/lib/responseType";
+import { Check, MessageCircle } from "lucide-react";
+import Image from "next/image";
 
 export default function PremiumPackagesSection({
   whatsapp,
+  packages,
 }: {
   whatsapp: string;
+  packages: PackageData[];
 }) {
+  const whatsappNumber = whatsapp.includes("+")
+    ? whatsapp.split("+").join("")
+    : whatsapp;
+  const waLink = `https://wa.me/${whatsappNumber}?text=`;
+
+  if (!packages?.length) return null;
+
   return (
-    <section
-      id="packages"
-      className="py-24 relative overflow-hidden bg-slate-50">
+    <section id="packages" className="py-24 md:py-32 relative overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 bg-linear-to-b from-stone-50 via-amber-50/20 to-stone-50" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-main-color/10 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-main-color/10 to-transparent" />
+
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <p className="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-main-color/5 text-main-color text-sm font-semibold mb-4">
+        <div className="text-center mb-16 md:mb-20 max-w-3xl mx-auto">
+          <span className="inline-flex items-center px-4 py-2 rounded-full bg-main-color/10 text-main-color text-sm font-semibold mb-5 tracking-wide">
             باقات مميزة
-          </p>
-          <p className="text-3xl md:text-4xl font-extrabold text-[hsl(var(--color-text-heading))] mb-4">
+          </span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-main-black mb-5 leading-tight">
             اختر الباقة المناسبة لك
-          </p>
-          <p className="text-low-color text-lg max-w-3xl mx-auto leading-relaxed">
+          </h2>
+          <p className="text-low-color text-lg md:text-xl leading-relaxed">
             نقدم لك مجموعة متميزة من الباقات المصممة بعناية لتلبي احتياجاتك
           </p>
         </div>
 
         {/* Packages Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mx-auto">
-          {packages.map((pkg) => (
-            <div
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mx-auto w-full">
+          {packages.map((pkg, index) => (
+            <motion.div
+              initial={{ scale: 0.8 }}
+              whileInView={{ scale: 1 }}
+              transition={{ duration: 0.4, delay: index * 0.2 }}
+              viewport={{ once: true }}
               key={pkg.id}
-              className={`relative flex flex-col h-full rounded-3xl p-8 pb-4 transition-all duration-300 ${
-                pkg.popular
-                  ? "bg-white border-2 border-main-color shadow-[0_24px_60px_rgba(15,23,42,0.18)] md:scale-105"
-                  : "bg-white border border-slate-100 shadow-[0_18px_45px_rgba(15,23,42,0.08)] hover:shadow-[0_24px_60px_rgba(15,23,42,0.12)]"
-              }`}>
-              {/* Popular Badge */}
-              {pkg.popular && (
-                <div className="absolute top-0 right-1/2 translate-x-1/2 -translate-y-1/2">
-                  <span className="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-main-color text-white text-sm font-semibold">
-                    الأكثر طلباً
+              className="group relative flex flex-col h-full w-full rounded-3xl overflow-hidden bg-white border border-stone-100 shadow-[0_4px_20px_rgba(51,40,34,0.04)] hover:shadow-[0_20px_60px_rgba(51,40,34,0.12)] hover:border-main-color/20 transition-all duration-500 hover:-translate-y-1">
+              {/* Image */}
+              <div className="relative aspect-4/3 overflow-hidden bg-stone-100">
+                {pkg.image ? (
+                  <Image
+                    src={pkg.image}
+                    alt={pkg.title}
+                    width={600}
+                    height={450}
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center bg-linear-to-br from-stone-200 via-stone-100 to-amber-50/50">
+                    <span className="text-5xl font-bold text-stone-300">
+                      {pkg.title?.charAt(0) ?? "?"}
+                    </span>
+                  </div>
+                )}
+                {/* Overlay gradient */}
+                <div className="absolute inset-0 bg-linear-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                {/* Package label overlay */}
+                <div className="absolute top-4 right-4">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/90 backdrop-blur-sm text-main-color text-xs font-bold shadow-sm">
+                    الباقة {index + 1}
                   </span>
                 </div>
-              )}
-
-              {/* Package Name */}
-              <p className="text-4xl font-bold text-main-color text-right mb-2">
-                {pkg.name}
-              </p>
-
-              {/* Description */}
-              <p className="text-right text-low-color text-sm mb-6">
-                {pkg.description}
-              </p>
-
-              {/* Features List */}
-              <div className="space-y-4 flex-1">
-                <p className="text-right font-semibold text-slate-900 mb-4">
-                  المميزات:
-                </p>
-                {pkg.features.map((feature, index) => (
-                  <div key={index} className="flex items-start gap-3">
-                    <Check className="w-5 h-5 text-main-color shrink-0 mt-0.5" />
-                    <p className="text-right text-black text-sm">{feature}</p>
-                  </div>
-                ))}
               </div>
-              {/* CTA Button */}
-              <a
-                href={`https://wa.me/${
-                  whatsapp.includes("+")
-                    ? whatsapp.split("+").join("")
-                    : whatsapp
-                }?text=`}
-                target="_blank"
-                className={`w-full py-3 px-6 text-center rounded-xl font-semibold transition-all duration-300 mt-5 ${
-                  pkg.popular
-                    ? "bg-main-color text-white hover:shadow-lg hover:-translate-y-0.5"
-                    : "border-2 border-main-color text-main-color hover:bg-main-color/5"
-                }`}>
-                اطلب الخدمة
-              </a>
-            </div>
+
+              {/* Content */}
+              <div className="flex flex-col flex-1 p-7 md:p-8">
+                <h3 className="text-xl md:text-3xl font-bold text-main-black mb-3 text-right">
+                  {pkg.title}
+                </h3>
+                {/* Features */}
+                {pkg.features?.length > 0 ? (
+                  <div>
+                    <p className="text-main-color text-sm md:text-base mb-3 text-right font-bold">
+                      المميزات :
+                    </p>
+                    <ul className="space-y-3 flex-1 mb-8 pr-3">
+                      {pkg.features.map((feature, i) => (
+                        <li
+                          key={i}
+                          className="flex items-start gap-2 text-right">
+                          <span className="shrink-0 mt-0.5 w-5 h-5 flex items-center justify-center">
+                            <Check
+                              className="w-5 h-5 text-main-color"
+                              strokeWidth={2.5}
+                            />
+                          </span>
+                          <span className="text-main-black text-sm md:text-base font-medium leading-relaxed">
+                            {feature}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : (
+                  <div className="flex-1 mb-8" />
+                )}
+
+                {/* CTA */}
+                <a
+                  href={waLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-auto w-full py-4 px-6 rounded-2xl font-semibold text-base transition-all duration-300 flex items-center justify-center gap-2 bg-main-color text-white hover:bg-main-color/90 shadow-lg shadow-main-color/20 hover:shadow-xl hover:shadow-main-color/25 hover:-translate-y-0.5 active:translate-y-0">
+                  <MessageCircle className="w-5 h-5" />
+                  اطلب الخدمة
+                </a>
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>

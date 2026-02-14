@@ -1,6 +1,7 @@
 import { HeroSectionData } from "@/lib/responseType";
 import HeroLinks from "./AnimatedComponents/HeroLinks";
 import Image from "next/image";
+import HeroTitleCard from "./AnimatedComponents/HeroTitleCard";
 
 export default function HeroSection({
   headline,
@@ -22,7 +23,7 @@ export default function HeroSection({
             fill
             sizes="100vw"
             priority
-            quality={85}
+            quality={75}
             className="object-cover object-center"
           />
           <div className="absolute inset-0 bg-linear-to-b from-black/60 to-black/60" />
@@ -32,9 +33,7 @@ export default function HeroSection({
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center text-white space-y-6">
-          <p className="inline-flex items-center justify-center px-5 py-2 rounded-full bg-white/10 border border-white/20 text-sm md:text-base font-medium backdrop-blur-sm">
-            قهوجيين الرياض · ضيافة راقية لمناسباتكم
-          </p>
+          <HeroTitleCard />
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
             {headline}

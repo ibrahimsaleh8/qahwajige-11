@@ -1,12 +1,5 @@
 import { AboutSectionData, WhyUsFeatureData } from "@/lib/responseType";
-import { Award, Clock, Shield, Sparkles, LucideIcon } from "lucide-react";
-
-const iconMap: Record<string, LucideIcon> = {
-  Award,
-  Clock,
-  Shield,
-  Sparkles,
-};
+import FeatureCard from "./FeatureCard";
 export default function AboutSection({
   description1,
   label,
@@ -35,29 +28,9 @@ export default function AboutSection({
 
         {features && features.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mx-auto">
-            {features.map((item) => {
-              const Icon = iconMap[item.icon as keyof typeof iconMap];
-
-              return (
-                <div
-                  key={item.title}
-                  className="group bg-white text-black hover:border-main-color/60 rounded-2xl p-8 text-center shadow-sm hover:shadow-luxury transition-all duration-300">
-                  <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-main-color group-hover:bg-main-color/90 duration-300 transition-colors">
-                    {Icon && (
-                      <Icon className="w-7 h-7 text-white group-hover:scale-105 transition-transform" />
-                    )}
-                  </div>
-
-                  <div className="text-lg font-bold text-main-color mb-2">
-                    {item.title}
-                  </div>
-
-                  <div className="text-low-color text-sm leading-relaxed">
-                    {item.description}
-                  </div>
-                </div>
-              );
-            })}
+            {features.map((item, index) => (
+              <FeatureCard index={index} key={item.title} item={item} />
+            ))}
           </div>
         )}
       </div>
