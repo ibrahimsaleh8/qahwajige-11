@@ -59,7 +59,10 @@ export default async function HomePage() {
       />
       <FAQSection />
       <GallerySection gallery={data.gallery} />
-      <FloatedIcons whatsapp={data.hero?.whatsApp ?? ""} />
+      <FloatedIcons
+        whatsapp={data.hero?.whatsApp ?? ""}
+        telephone={data.footer.phone ?? ""}
+      />
       <ContactSection {...data.footer} whatsapp={data.hero?.whatsApp ?? ""} />
       <Footer {...data.footer} description={data.hero?.subheadline} />
     </div>
