@@ -2,7 +2,7 @@
 import type { Metadata } from "next";
 import { Cairo } from "next/font/google";
 import "./globals.css";
-import { APP_URL, CurrentProjectId } from "@/lib/ProjectId";
+import { APP_URL, CurrentProjectId, currentURL } from "@/lib/ProjectId";
 import { StructuredData } from "@/components/StructuredData";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
@@ -65,7 +65,10 @@ export async function generateMetadata(): Promise<Metadata> {
         },
       },
       alternates: {
-        canonical: process.env.NEXT_PUBLIC_APP_URL,
+        canonical: currentURL,
+      },
+      verification: {
+        google: "36Emp_FqbOUkXFl_UAv_pWxPOoeFAbrwd6jHjLRubJI",
       },
     };
   } catch (error) {
