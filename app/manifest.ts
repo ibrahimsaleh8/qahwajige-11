@@ -2,10 +2,10 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "قهوجي الرياض | قهوجي سعودي محترف",
+    name: "قهوجي الرياض | ضيافة قهوة عربية للمناسبات",
     short_name: "قهوجي الرياض",
     description:
-      "خدمة قهوجي الرياض لتقديم القهوة العربية الأصيلة والضيافة السعودية الراقية لجميع المناسبات الخاصة والرسمية",
+      "متخصصين في خدمات القهوجيين والضيافة العربية في الرياض للمناسبات والأفراح والفعاليات الخاصة.",
     start_url: "/",
     scope: "/",
     display: "standalone",

@@ -1,10 +1,7 @@
 // app/page.tsx
 import AboutSection from "@/components/AboutSection";
 import ContactSection from "@/components/ContactSection";
-import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
-import { GallerySection } from "@/components/GallerySection";
-import { Header } from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import ServicesSection from "@/components/ServicesSection";
 import PremiumPackagesSection from "@/components/PremiumPackagesSection";
@@ -12,6 +9,7 @@ import { APP_URL, CurrentProjectId } from "@/lib/ProjectId";
 import { ProjectContentResponse } from "@/lib/responseType";
 import FloatedIcons from "@/components/FloatedIcons";
 import RatingSection from "@/components/RatingSection";
+import Header from "@/components/Header";
 
 export default async function HomePage() {
   let data: ProjectContentResponse;
@@ -43,28 +41,34 @@ export default async function HomePage() {
   }
 
   return (
-    <div className="min-h-screen overflow-x-hidden">
-      <Header brandName={data.header.brandName} telephone={data.footer.phone} />
+    <>
+      <Header brandName={data.header.brandName} />
       <HeroSection {...data.hero} image={data.about.image ?? ""} />
-      <AboutSection {...data.about} features={data.whyUs.features} />
-      <ServicesSection {...data.services} />
-      <PremiumPackagesSection
-        packages={data.packages ?? []}
-        whatsapp={data.hero?.whatsApp ?? ""}
+      <AboutSection
+        {...data.about}
+        features={data.whyUs.features}
+        image={data.gallery[0].url ?? ""}
       />
+      <ServicesSection
+        {...data.services}
+        images={data.gallery.slice(1) ?? []}
+      />
+
       <RatingSection
         projectId={CurrentProjectId}
         averageRating={data.rating?.averageRating ?? 0}
         totalRatings={data.rating?.totalRatings ?? 0}
       />
-      <FAQSection />
-      <GallerySection gallery={data.gallery} />
+      <PremiumPackagesSection
+        packages={data.packages ?? []}
+        whatsapp={data.hero?.whatsApp ?? ""}
+      />
+      <ContactSection {...data.footer} whatsapp={data.hero?.whatsApp ?? ""} />
       <FloatedIcons
         whatsapp={data.hero?.whatsApp ?? ""}
         telephone={data.footer.phone ?? ""}
       />
-      <ContactSection {...data.footer} whatsapp={data.hero?.whatsApp ?? ""} />
       <Footer {...data.footer} description={data.hero?.subheadline} />
-    </div>
+    </>
   );
 }

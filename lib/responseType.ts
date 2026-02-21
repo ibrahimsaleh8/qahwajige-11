@@ -9,10 +9,10 @@ export type ProjectContentResponse = {
   gallery: GalleryImageData[];
   footer: FooterData;
   packages: PackageData[];
-  rating:{
-averageRating: number;
-totalRatings: number;
-  }
+  rating: {
+    averageRating: number;
+    totalRatings: number;
+  };
 };
 
 // Header & Footer

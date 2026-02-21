@@ -1,115 +1,84 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Coffee, Menu, X } from "lucide-react";
-import { HeaderData } from "@/lib/responseType";
+import { useState } from "react";
 import Link from "next/link";
-
-const navLinks = [
-  { href: "#about", label: "عنّا" },
-  { href: "#services", label: "خدماتنا" },
-  { href: "#packages", label: "باقاتنا" },
-  { href: "#faq", label: "الأسئلة الشائعة" },
-  { href: "#gallery", label: "معرض الصور" },
-  { href: "#contact", label: "تواصل معنا" },
+import { MenuIcon, XIcon } from "lucide-react";
+import Logo from "./Logo";
+const navItems = [
+  { label: "معلومات عنا", href: "#about-us" },
+  { label: "خدماتنا", href: "#our-services" },
+  { label: "باقاتنا", href: "#our-packages" },
+  { label: "تواصل معنا", href: "#contact-us" },
 ];
-
-export function Header({
-  brandName,
-  telephone,
-}: HeaderData & { telephone?: string }) {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+export default function Header({ brandName }: { brandName: string }) {
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-main-background shadow-md"
-          : "bg-main-background backdrop-blur-sm"
-      }`}>
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo - Left */}
-          <Link
-            href="/"
-            className="flex items-center gap-2 md:gap-3  sm:text-lg md:text-xl font-bold text-main-color">
-            <span className="w-8 h-8 rounded bg-main-color flex items-center justify-center">
-              <Coffee className="w-5 h-5 text-white" />
-            </span>
-            <span>{brandName}</span>
-          </Link>
+    <header className="sticky top-0 z-50 bg-white/90 backdrop-blur border-b shadow-sm">
+      <div className="container mx-auto flex items-center justify-between py-4 px-4 md:px-0">
+        {/* Logo */}
+        <Logo brandName={brandName} theme="dark" />
 
-          {/* Desktop Navigation - Right */}
-          <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-main-black hover:text-main-color/70 transition-colors font-bold text-[15px]">
-                {link.label}
-              </Link>
+        {/* Desktop Navigation */}
+        <nav className="hidden md:block">
+          <ul className="flex items-center gap-8 text-sm font-medium text-neutral-700">
+            {navItems.map((item) => (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  className="relative hover:text-primary transition after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all hover:after:w-full">
+                  {item.label}
+                </Link>
+              </li>
             ))}
-          </nav>
+          </ul>
+        </nav>
 
-          <div className="flex items-center gap-3">
-            <button
-              aria-label="toggle mobile menu"
-              className="lg:hidden text-main-color cursor-pointer p-2"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-              {isMobileMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
-            </button>
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden p-2 rounded hover:bg-gray-100 transition cursor-pointer"
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label="Toggle menu">
+          {isOpen ? (
+            <XIcon className="w-6 h-6 text-neutral-900" />
+          ) : (
+            <MenuIcon className="w-6 h-6 text-neutral-900" />
+          )}
+        </button>
 
-            <a
-              target="_blank"
-              href={`tel:${telephone}`}
-              className="bg-main-color hover:bg-main-color/90 text-white md:px-6 md:py-3 px-4 py-2 text-sm md:text-base rounded-lg shadow-lg transition-all">
-              احجز الآن
-            </a>
-          </div>
-        </div>
+        {/* CTA for Desktop */}
+        <Link
+          href="#contact"
+          className="hidden md:inline-block rounded-full bg-primary px-5 py-2 text-sm font-semibold text-white shadow hover:scale-105 hover:bg-primary/90 transition">
+          احجز موعدك
+        </Link>
       </div>
 
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-main-color border-t border-white/20">
-            <nav className="container mx-auto px-4 py-6 flex flex-col gap-4">
-              {navLinks.map((link) => (
+      {/* Mobile Menu */}
+      {isOpen && (
+        <div className="md:hidden bg-white border-t border-gray-200">
+          <ul className="flex flex-col gap-4 p-4 text-neutral-700">
+            {navItems.map((item) => (
+              <li key={item.href}>
                 <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() =>
-                    setTimeout(() => setIsMobileMenuOpen(false), 300)
-                  }
-                  className="text-white hover:text-white/70 transition-colors font-medium py-2">
-                  {link.label}
+                  href={item.href}
+                  className="block text-base font-medium py-2 px-3 rounded hover:bg-gray-100 transition"
+                  onClick={() => setIsOpen(false)}>
+                  {item.label}
                 </Link>
-              ))}
+              </li>
+            ))}
+            <li>
               <a
-                target="_blank"
-                href={`tel:${telephone}`}
-                className="bg-white hover:bg-white/90 text-black md:px-6 md:py-3 px-4 py-2 text-sm md:text-base rounded-lg shadow-lg transition-all">
-                احجز الآن
+                href="#book"
+                className="block text-center bg-primary text-white font-semibold rounded-full py-2 px-4 hover:bg-primary/90 transition"
+                onClick={() => setIsOpen(false)}>
+                احجز موعدك
               </a>
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            </li>
+          </ul>
+        </div>
+      )}
     </header>
   );
 }

@@ -1,14 +1,13 @@
 // app/layout.tsx
 import type { Metadata } from "next";
-import { Cairo } from "next/font/google";
+import { Almarai } from "next/font/google";
 import "./globals.css";
 import { APP_URL, CurrentProjectId, currentURL } from "@/lib/ProjectId";
-import { StructuredData } from "@/components/StructuredData";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 
-const cairoFont = Cairo({
-  weight: ["1000", "200", "300", "400", "500", "600", "700", "800", "900"],
+const almaraiFont = Almarai({
+  weight: ["300", "400", "700", "800"],
   subsets: ["arabic"],
 });
 type MetaDataResponseDataType = {
@@ -29,40 +28,27 @@ export async function generateMetadata(): Promise<Metadata> {
       },
     );
     const data: MetaDataResponseDataType = await res.json();
-
-    const title = data.title;
-    const description = data.description;
     const brandName = data.brandName;
-    const keywords = data.keywords;
 
     return {
-      title,
-      description,
-      keywords,
+      title: data.title,
+      description: data.description,
+      keywords: data.keywords,
       creator: brandName,
       publisher: brandName,
-      openGraph: {
-        title,
-        description,
-        type: "website",
-        locale: "ar_SA",
-        siteName: brandName,
-      },
-      twitter: {
-        card: "summary_large_image",
-        title,
-        description,
-      },
       robots: {
         index: true,
         follow: true,
         googleBot: {
           index: true,
-          follow: true,
-          "max-video-preview": -1,
-          "max-image-preview": "large",
-          "max-snippet": -1,
         },
+      },
+      openGraph: {
+        title: data.title,
+        description: data.description,
+        url: currentURL,
+        siteName: brandName,
+        type: "website",
       },
       alternates: {
         canonical: currentURL,
@@ -85,21 +71,9 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const res = await fetch(
-    `${APP_URL}/api/project/${CurrentProjectId}/metadata`,
-  );
-  const data: MetaDataResponseDataType = await res.json();
-
   return (
     <html lang="ar" dir="rtl">
-      <head>
-        <StructuredData
-          name={data.brandName}
-          description={data.description}
-          url={process.env.NEXT_PUBLIC_APP_URL as string}
-        />
-      </head>
-      <body className={`${cairoFont.className} antialiased`}>
+      <body className={`${almaraiFont.className} antialiased`}>
         {children}
         <Analytics />
 

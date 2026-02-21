@@ -47,19 +47,19 @@ html {
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
 
-  --main-background: #fffdf5; /* light beige/off-white background */
-  --second-background: #fdfbf7; /* same beige for sections */
-  --main-black: #332822; /* dark brown */
-  --main-color: #006c35; /* warm medium-dark brown for CTAs */
-  --main-color-dark: #6b4e2f; /* darker brown for hover states */
-  --secondary-accent: #8b7d72; /* lighter brown for secondary text */
-  --low-color: #4e4742; /* lighter brown for body text */
-  --card-background: #faf2e9; /* beige for cards */
-  --slate-700: #b4a597; /* light brown borders */
-  --slate-800: #a09082; /* darker brown borders */
-  --text-heading: #332822; /* dark brown for headings */
-  --text-body: #8b7d72; /* lighter brown for body text */
-  --text-placeholder: #b4a597; /* light brown for placeholders */
+  --main-background: #fffdf5;
+  --second-background: #fdfbf7;
+  --main-black: #332822;
+  --main-color: #006c35;
+  --main-color-dark: #6b4e2f;
+  --secondary-accent: #8b7d72;
+  --low-color: #4e4742;
+  --card-background: #faf2e9;
+  --slate-700: #b4a597;
+  --slate-800: #a09082;
+  --text-heading: #332822;
+  --text-body: #8b7d72;
+  --text-placeholder: #b4a597;
 }
 
 body {

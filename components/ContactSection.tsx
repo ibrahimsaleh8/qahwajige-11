@@ -1,111 +1,37 @@
-"use client";
-
 import { FooterData } from "@/lib/responseType";
-import { Phone, Mail, MapPin, MessageCircle } from "lucide-react";
+import { FaPhoneVolume, FaWhatsapp } from "react-icons/fa";
 
 export default function ContactSection({
-  address,
   phone,
-  email,
   whatsapp,
 }: FooterData & { whatsapp: string }) {
+  const waNumber = whatsapp.includes("+")
+    ? whatsapp.split("+").join("")
+    : whatsapp;
+
   return (
-    <section id="contact" className="py-20 relative overflow-hidden bg-gray-50">
-      <div className="container mx-auto px-4 relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <p className="text-4xl md:text-5xl font-bold text-main-color mb-4">
-            معلومات التواصل
-          </p>
-          <div className="w-24 h-1 bg-main-color mx-auto rounded-full mb-6" />
-          <p className="text-low-color text-lg max-w-2xl mx-auto">
-            نحن هنا لخدمتكم والإجابة على جميع استفساراتكم. تواصل معنا عبر أي من
-            الوسائل التالية وسيسعد فريقنا بمساعدتك.{" "}
-          </p>
-        </div>
-
-        <div className="grid gap-12 max-w-6xl mx-auto">
-          {/* Contact Information */}
-          <div className="space-y-8">
-            {/* Contact Cards */}
-            <div className="space-y-6 grid md:grid-cols-2 items-start gap-5">
-              {/* Phone */}
-              <div className="bg-white rounded-2xl p-6 border border-main-color/10 hover:border-main-color/30 transition-all duration-300 group">
-                <div className="flex flex-col items-center text-center gap-4">
-                  <div className="w-12 h-12 bg-main-color rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <Phone className="w-6 h-6 text-white" />
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-black font-semibold mb-2">الهاتف</p>
-                    <a
-                      href={`tel:${phone}`}
-                      target="_blank"
-                      className="text-low-color font-medium hover:text-main-color transition-colors duration-300 text-lg"
-                      dir="ltr">
-                      {phone}
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              {/* Whatsapp */}
-              <div className="bg-white rounded-2xl p-6 border border-main-color/10 hover:border-main-color/30 transition-all duration-300 group">
-                <div className="flex flex-col items-center text-center gap-4">
-                  <div className="w-12 h-12 bg-main-color rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <MessageCircle className="w-6 h-6 text-white" />
-                  </div>
-                  <div className="flex-1">
-                    <p className="font-semibold mb-2">واتساب</p>
-                    <a
-                      href={`https://wa.me/${
-                        whatsapp.includes("+")
-                          ? whatsapp.split("+").join("")
-                          : whatsapp
-                      }?text=`}
-                      target="_blank"
-                      className="text-low-color font-medium hover:text-main-color transition-colors duration-300 text-lg"
-                      dir="ltr">
-                      {whatsapp}
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              {/* Email */}
-              <div className="bg-white rounded-2xl p-6 border border-main-color/10 hover:border-main-color/30 transition-all duration-300 group">
-                <div className="flex flex-col items-center text-center gap-4">
-                  <div className="w-12 h-12 bg-main-color rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <Mail className="w-6 h-6 text-white" />
-                  </div>
-                  <div className="flex-1">
-                    <p className="font-semibold mb-2">البريد الإلكتروني</p>
-                    <a
-                      target="_blank"
-                      href={`mailto:${email}`}
-                      className="text-low-color hover:text-main-color font-medium transition-colors duration-300 break-all">
-                      {email}
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              {/* Address */}
-              <div className="bg-white rounded-2xl p-6 border border-main-color/10 hover:border-main-color/30 transition-all duration-300 group">
-                <div className="flex flex-col items-center text-center gap-4">
-                  <div className="w-12 h-12 bg-main-color rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <MapPin className="w-6 h-6 text-white" />
-                  </div>
-                  <div className="flex-1">
-                    <p className="font-semibold mb-2">العنوان</p>
-                    <p className="text-low-color text-sm font-medium leading-relaxed">
-                      {address}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <section
+      id="contact-us"
+      className="relative py-28 overflow-hidden bg-[#1A2B3C] text-white flex justify-center items-center text-center flex-col gap-9">
+      <div className="flex flex-col gap-8">
+        <h3 className="text-6xl font-bold">جاهز لاستقبال ضيوفك؟</h3>
+        <p className="text-lg font-medium">تواصل معنا الان</p>
+      </div>
+      <div className="flex items-center gap-4">
+        <a
+          href={`tel:${phone}`}
+          className="flex items-center gap-2 px-8 py-4 bg-blue-600 text-white font-medium rounded-md">
+          اتصل بنا
+          <FaPhoneVolume className="size-5" />
+        </a>
+        {/* WhatsApp */}
+        <a
+          href={`https://wa.me/${waNumber}?text=`}
+          target="_blank"
+          className="flex items-center gap-2 px-8 py-4 bg-green-800 text-white font-medium rounded-md">
+          راسلنا على واتساب
+          <FaWhatsapp className="size-5" />
+        </a>
       </div>
     </section>
   );
