@@ -57,10 +57,10 @@ export default function Footer({
 
   const footerLinks = {
     company: [
-      { name: "الرئيسية", href: "#home" },
-      { name: "عن الشركة", href: "#about" },
-      { name: "خدماتنا", href: "#services" },
-      { name: "اتصل بنا", href: "#contact" },
+      { name: "الرئيسية", href: "/#home" },
+      { name: "عن الشركة", href: "/#about" },
+      { name: "خدماتنا", href: "/#services" },
+      { name: "اتصل بنا", href: "/#contact" },
     ],
   };
 
@@ -82,14 +82,14 @@ export default function Footer({
               <ul className="space-y-3">
                 <li>
                   <Link
-                    href={"#services"}
+                    href={"/#services"}
                     className="text-white/80 hover:text-main-color transition-colors inline-block">
                     قهوجيين وصبابين
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href={"#services"}
+                    href={"/#services"}
                     className="text-white/80 hover:text-main-color transition-colors inline-block">
                     تجهيز حفلات
                   </Link>

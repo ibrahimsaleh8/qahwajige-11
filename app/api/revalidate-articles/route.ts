@@ -3,7 +3,9 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    revalidatePath("/(Main)", "page");
+    revalidatePath("/(Main)/articles", "page");
+    revalidatePath("/(Main)/articles/[title]", "page");
+    revalidatePath("/sitemap.xml");
     return NextResponse.json({ message: "Revalidation done" });
   } catch (error) {
     console.log(error);

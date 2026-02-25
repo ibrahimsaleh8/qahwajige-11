@@ -5,10 +5,11 @@ import Link from "next/link";
 import { MenuIcon, XIcon } from "lucide-react";
 import Logo from "./Logo";
 const navItems = [
-  { label: "معلومات عنا", href: "#about-us" },
-  { label: "خدماتنا", href: "#our-services" },
-  { label: "باقاتنا", href: "#our-packages" },
-  { label: "تواصل معنا", href: "#contact-us" },
+  { label: "معلومات عنا", href: "/#about-us" },
+  { label: "خدماتنا", href: "/#our-services" },
+  { label: "باقاتنا", href: "/#our-packages" },
+  { label: "مقالات", href: "/articles" },
+  { label: "تواصل معنا", href: "/#contact-us" },
 ];
 export default function Header({ brandName }: { brandName: string }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -48,7 +49,7 @@ export default function Header({ brandName }: { brandName: string }) {
 
         {/* CTA for Desktop */}
         <Link
-          href="#contact"
+          href="/#contact"
           className="hidden md:inline-block rounded-full bg-primary px-5 py-2 text-sm font-semibold text-white shadow hover:scale-105 hover:bg-primary/90 transition">
           احجز موعدك
         </Link>
@@ -69,12 +70,12 @@ export default function Header({ brandName }: { brandName: string }) {
               </li>
             ))}
             <li>
-              <a
-                href="#book"
+              <Link
+                href="/#contact"
                 className="block text-center bg-primary text-white font-semibold rounded-full py-2 px-4 hover:bg-primary/90 transition"
                 onClick={() => setIsOpen(false)}>
                 احجز موعدك
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

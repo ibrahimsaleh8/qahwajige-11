@@ -75,6 +75,7 @@ export default async function RootLayout({
     <html lang="ar" dir="rtl">
       <body className={`${almaraiFont.className} antialiased`}>
         {children}
+
         <Analytics />
 
         <Script id="clixtell-tracking" strategy="afterInteractive">

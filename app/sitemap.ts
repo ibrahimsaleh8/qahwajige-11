@@ -1,37 +1,49 @@
-import { currentURL } from "@/lib/ProjectId";
+import { currentURL, APP_URL, CurrentProjectId } from "@/lib/ProjectId";
 import type { MetadataRoute } from "next";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+type Article = {
+  title: string;
+  updatedAt: string;
+};
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  let articles: Article[] = [];
+  try {
+    const res = await fetch(
+      `${APP_URL}/api/project/${CurrentProjectId}/articles`,
+    );
+
+    if (res.ok) {
+      const data = await res.json();
+      articles = data.data.articles;
+    }
+  } catch (error) {
+    console.error("Failed to fetch articles for sitemap", error);
+  }
+
+  const articleRoutes: MetadataRoute.Sitemap = articles.map((article) => ({
+    url: `${currentURL}/articles/${article.title.split(" ").join("-")}`,
+    lastModified: new Date(article.updatedAt),
+    changeFrequency: "weekly",
+    priority: 0.8,
+  }));
+
   return [
+    // 🏠 Home
     {
       url: currentURL,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 1,
     },
+
     {
-      url: `${currentURL}#about-us`,
+      url: `${currentURL}/articles`,
       lastModified: new Date(),
       changeFrequency: "weekly",
-      priority: 0.8,
+      priority: 0.9,
     },
-    {
-      url: `${currentURL}#our-services`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${currentURL}#our-packages`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${currentURL}#contact-us`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
+
+    ...articleRoutes,
   ];
 }
