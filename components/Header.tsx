@@ -8,7 +8,7 @@ const navItems = [
   { label: "معلومات عنا", href: "/#about-us" },
   { label: "خدماتنا", href: "/#our-services" },
   { label: "باقاتنا", href: "/#our-packages" },
-  { label: "مقالات", href: "/articles" },
+  { label: "خدمات الضيافة", href: "/articles" },
   { label: "تواصل معنا", href: "/#contact-us" },
 ];
 export default function Header({ brandName }: { brandName: string }) {
