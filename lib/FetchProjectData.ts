@@ -27,6 +27,15 @@ export const FetchProjectData = async () => {
         email: "",
         address: "",
       },
+      socialMediaLinks: {
+        instagram: null,
+        facebook: null,
+        twitter: null,
+        tiktok: null,
+        youtube: null,
+      },
+      customSections: [],
+      showContactSection: true,
     };
   }
   return { data };

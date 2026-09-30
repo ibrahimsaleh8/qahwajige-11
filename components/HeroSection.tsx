@@ -22,7 +22,6 @@ export default function HeroSection({
             fill
             sizes="100vw"
             priority
-            quality={75}
             className="object-cover object-center"
           />
           <div className="absolute inset-0 bg-linear-to-b from-black/60 to-black/60" />

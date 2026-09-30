@@ -4,13 +4,14 @@ import { Almarai } from "next/font/google";
 import "./globals.css";
 import { APP_URL, CurrentProjectId, currentURL } from "@/lib/ProjectId";
 import Script from "next/script";
+import { fetchMetaData } from "@/lib/FetchMetaData";
 import { Analytics } from "@vercel/analytics/next";
 
 const almaraiFont = Almarai({
   weight: ["300", "400", "700", "800"],
   subsets: ["arabic"],
 });
-type MetaDataResponseDataType = {
+export type MetaDataResponseDataType = {
   title: string;
   description: string;
   keywords: string[];
@@ -19,18 +20,11 @@ type MetaDataResponseDataType = {
 
 export async function generateMetadata(): Promise<Metadata> {
   try {
-    const res = await fetch(
-      `${APP_URL}/api/project/${CurrentProjectId}/metadata`,
-      {
-        next: {
-          tags: ["metadata"],
-        },
-      },
-    );
-    const data: MetaDataResponseDataType = await res.json();
+    const data = await fetchMetaData();
     const brandName = data.brandName;
 
     return {
+      metadataBase: new URL(currentURL),
       title: data.title,
       description: data.description,
       keywords: data.keywords,
@@ -75,7 +69,6 @@ export default async function RootLayout({
     <html lang="ar" dir="rtl">
       <body className={`${almaraiFont.className} antialiased`}>
         {children}
-
         <Analytics />
 
         <Script id="clixtell-tracking" strategy="afterInteractive">

@@ -1,4 +1,5 @@
-import { APP_URL, CurrentProjectId } from "@/lib/ProjectId";
+import { APP_URL, CurrentProjectId, currentURL } from "@/lib/ProjectId";
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -19,9 +20,31 @@ type GetArticlesResponse = {
   };
 };
 
+export const metadata: Metadata = {
+  title: "خدمات الضيافة | مقالات عن القهوة العربية والمناسبات",
+  description:
+    "اكتشف مقالات متخصصة عن الضيافة العربية، القهوة العربية، تنظيم المناسبات، وأحدث النصائح والأفكار لتقديم تجربة ضيافة مميزة.",
+  alternates: {
+    canonical: `${currentURL}/articles`,
+  },
+  openGraph: {
+    title: "خدمات الضيافة | مقالات عن القهوة العربية والمناسبات",
+    description:
+      "اكتشف مقالات متخصصة عن الضيافة العربية، القهوة العربية، تنظيم المناسبات، وأحدث النصائح والأفكار لتقديم تجربة ضيافة مميزة.",
+    url: `${currentURL}/articles`,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "خدمات الضيافة | مقالات عن القهوة العربية والمناسبات",
+    description:
+      "اكتشف مقالات متخصصة عن الضيافة العربية، القهوة العربية، تنظيم المناسبات، وأحدث النصائح والأفكار لتقديم تجربة ضيافة مميزة.",
+  },
+};
+
 export default async function ArticlesPage() {
   const res = await fetch(
-    `${APP_URL}/api/project/${CurrentProjectId}/articles`,
+    `${APP_URL}/api/project/${CurrentProjectId}/articles/category/خدمات-الضيافة`,
   );
 
   if (!res.ok) {
@@ -46,10 +69,10 @@ export default async function ArticlesPage() {
           لا توجد مقالات متاحة حالياً.
         </p>
       ) : (
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid md:gap-6 gap-3 grid-cols-2 lg:grid-cols-4">
           {articles.map((article) => (
             <Link
-              href={`/articles/${article.title.split(" ").join("-")}`}
+              href={`/${article.title.split(" ").join("-")}`}
               key={article.id}
               className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition-shadow duration-200">
               {article.coverImage && (
@@ -63,13 +86,13 @@ export default async function ArticlesPage() {
                 </div>
               )}
 
-              <div className="p-4 flex flex-col flex-1 space-y-3">
-                <h2 className="text-lg font-semibold text-[#332822] line-clamp-2">
+              <div className="md:p-4 p-2 flex flex-col flex-1 space-y-3">
+                <h2 className="md:text-lg text-base font-semibold text-[#332822] line-clamp-2">
                   {article.title}
                 </h2>
 
                 {article.content && (
-                  <p className="text-sm text-[#8B7D72] line-clamp-3">
+                  <p className="md:text-sm text-xs text-[#8B7D72] line-clamp-3">
                     {article.content.replace(/<[^>]+>/g, "")}
                   </p>
                 )}

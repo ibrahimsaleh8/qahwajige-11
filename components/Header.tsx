@@ -9,7 +9,6 @@ const navItems = [
   { label: "خدماتنا", href: "/#our-services" },
   { label: "باقاتنا", href: "/#our-packages" },
   { label: "خدمات الضيافة", href: "/articles" },
-  { label: "تواصل معنا", href: "/#contact-us" },
 ];
 export default function Header({ brandName }: { brandName: string }) {
   const [isOpen, setIsOpen] = useState(false);
